@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: . # Define o diretório onde está o Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    
+  frontend:
+    build:
+      context: ./frontEnd # Define onde está o Dockerfile do frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"

@@ -1,0 +1,19 @@
+FROM node:18-alpine
+
+WORKDIR /AppFrontend
+
+# Instala o Angular CLI globalmente dentro do contêiner
+RUN npm install -g @angular/cli
+
+# Copia apenas os arquivos essenciais primeiro para otimizar o cache
+COPY list/package.json list/package-lock.json ./
+RUN npm install
+
+# Agora copia o restante dos arquivos
+COPY list/ ./
+
+EXPOSE 4200
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]
+
+
