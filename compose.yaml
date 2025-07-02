@@ -3,14 +3,38 @@ version: "3.8"
 services:
   app:
     build:
-      context: . # Define o diretório onde está o Dockerfile
+      context: . # Diretório onde está o Dockerfile do backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    
+    depends_on:
+      - mongo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/DB
+    networks:
+      - app-network
+
   frontend:
     build:
-      context: ./frontEnd # Define onde está o Dockerfile do frontend
+      context: ./frontEnd # Diretório onde está o Dockerfile do frontend
       dockerfile: Dockerfile
     ports:
       - "4200:4200"
+    networks:
+      - app-network
+
+  mongo:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongoDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongo_data:
+
+networks:
+  app-network:
