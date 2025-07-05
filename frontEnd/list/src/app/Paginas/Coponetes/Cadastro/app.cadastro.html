@@ -1,0 +1,11 @@
+<div>
+    <h2>Cadastro</h2>
+    <p>Informe seu E-meil</p>
+    <input id="nm" type="Email" [(ngModel)]="name"/> <br/>
+    <p>Informe sua senha</p>
+    <input id="ps" type="password" [(ngModel)]="password"/> <br/>
+    <p>Confirme sua senha</p>
+    <input id="ps2" type="password" [(ngModel)]="password2"/> <br/>
+    <button (click)="cadastrar()">Cadastrar</button>
+    <p style="color:red">{{alertaMensagem}}</p>
+</div>

@@ -1,0 +1,54 @@
+#Cadastro-login {
+    width: 350px;
+    height: 410px;
+    border-radius: 60px;
+    text-align: center;
+    background: linear-gradient(rgb(195, 195, 195), rgb(241, 241, 241));
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 0 auto;
+
+}
+
+
+#Cadastro-login ul {
+    list-style: none;
+    display: flex;
+    width: 310px;
+    height: 80px;
+    background: linear-gradient(90deg, rgb(225, 117, 255) 20%, rgb(133, 124, 255));
+    border-radius: 60px 60px 0px 0px;
+
+}
+
+#Cadastro-login ul li {
+    margin: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+
+}
+
+#Cadastro-login ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.305);
+
+
+}
+
+#Divido-login {
+    font-size: 40px;
+    position: absolute;
+    padding: 0px 0px 0px 80px;
+}
+
+#Diviso {
+    position: absolute;
+    margin-left: 166px;
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.858);
+    margin-top: -12px;
+    text-shadow: 0px 0px 5px rgb(255, 255, 255);
+    cursor: default;
+}
