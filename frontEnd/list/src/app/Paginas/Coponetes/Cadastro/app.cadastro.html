@@ -1,11 +1,9 @@
 <div>
-    <h2>Cadastro</h2>
-    <p>Informe seu E-meil</p>
-    <input id="nm" type="Email" [(ngModel)]="name"/> <br/>
-    <p>Informe sua senha</p>
-    <input id="ps" type="password" [(ngModel)]="password"/> <br/>
-    <p>Confirme sua senha</p>
-    <input id="ps2" type="password" [(ngModel)]="password2"/> <br/>
+    <p id="alert" style="color:red" >{{alertaMensagem}}</p>
+    <input id="nm" type="Email" placeholder="Informe Seu E-meil" [(ngModel)]="name"/> <br/>
+    <input id="ps" type="password" placeholder="Crie uma senha" [(ngModel)]="password"/> <br/>
+    <input id="ps2" type="password" placeholder="Repitar sua senha" [(ngModel)]="password2"/> <br/>
+    
     <button (click)="cadastrar()">Cadastrar</button>
-    <p style="color:red">{{alertaMensagem}}</p>
+    
 </div>

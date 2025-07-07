@@ -16,6 +16,7 @@ input::placeholder{
 #alert{
     position: absolute;
     text-align: center;
+    margin-top: 198px;
     width: 100%;
 }
 

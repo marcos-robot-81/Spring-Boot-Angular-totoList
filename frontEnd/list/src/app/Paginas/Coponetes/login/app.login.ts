@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { Router } from "@angular/router";
+
 
 @Component({
     selector: 'app-login',
@@ -11,8 +13,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     password: string = '';
 
     aletaS: String = '';
+    private router = inject(Router);
 
     login(){
+        
+
         this.aletaS = '';
         if (this.name == ''){
             this.aletaS += "A caixa de emeil esta vazia!";
@@ -27,11 +32,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
             const req = new XMLHttpRequest();
 
+            
+
             req.onreadystatechange = () => {
                 if (req.readyState === XMLHttpRequest.DONE) {
                     if (req.status === 200) {
                         //console.log("Login bem-sucedido:", req.responseText);
                         this.aletaS = ( String(req.response));
+
+
                     } else {
                         console.error("Erro ao fazer login:", req.status, req.statusText);
                     }
@@ -44,8 +53,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
             req.send(`[{"name":"${Usuario.name}","password":"${Usuario.password}"}]`);
             
-            
+            // moda rota
+            this.router.navigate(['madt']);
         }
+        
     }
     
 

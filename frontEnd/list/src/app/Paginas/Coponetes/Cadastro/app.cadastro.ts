@@ -17,7 +17,7 @@ import { FormsModule } from "@angular/forms";
     cadastrar() {
         this.alertaMensagem = '';
         if (this.name == ''){
-            this.alertaMensagem += "A caixa de e-mail está vazia! </br>";
+            this.alertaMensagem += "A caixa de e-mail está vazia!";
         }else if(this.password == ''){
             this.alertaMensagem += "A caixa de senha está vazia!";
         }else if(this.password.length < 8){
