@@ -4,7 +4,7 @@ import { AppLoginCadastro } from './Paginas/loginECadastroRotas/app.logincatro';
 import { AppLogin } from './Paginas/Coponetes/login/app.login';
 import { AppCadastro } from './Paginas/Coponetes/Cadastro/app.cadastro';
 import { AppMenu } from './Paginas/Coponetes/Menu/app.menu';
-import { AppAriaDetrabalho } from './Paginas/menuADT/AriaDetrabalho/app.adt';
+import { AriaDetrabalho } from './Paginas/menuADT/AriaDetrabalho/app.adt';
 import { AppMenuADT } from './Paginas/menuADT/app.madt';
 
 export const routes: Routes = [

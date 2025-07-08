@@ -25,12 +25,8 @@ public class PortaoDeEntrada {
 
     @PostMapping("/login")
     public String login(@RequestBody String use){
-
         boolean v = GService.validado(use);
-
-        if(v == true){
-            return "Altorizado";
-        }
+        if(v == true){return "1";}
         return "Nome ou senha estão errados ou não Ezistem";
     }
 

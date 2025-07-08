@@ -17,13 +17,13 @@ import { FormsModule } from "@angular/forms";
     cadastrar() {
         this.alertaMensagem = '';
         if (this.name == ''){
-            this.alertaMensagem += "A caixa de e-mail está vazia!";
+            this.alertaMensagem = "A caixa de e-mail está vazia!";
         }else if(this.password == ''){
-            this.alertaMensagem += "A caixa de senha está vazia!";
+            this.alertaMensagem = "A caixa de senha está vazia!";
         }else if(this.password.length < 8){
-            this.alertaMensagem += "Senha deve ter no mínimo 8 caracteres!";
+            this.alertaMensagem = "Senha deve ter no mínimo 8 caracteres!";
         }else if(this.password != this.password2){
-            this.alertaMensagem += "As senhas não conferem!";
+            this.alertaMensagem = "As senhas não conferem!";
         }else if(this.alertaMensagem == ''){
             this.alertaMensagem = "Aguardando o retorno do servidor";
             // Aqui você pode adicionar a lógica para redirecionar o usuário ou realizar outras ações após o login bem-sucedido.
