@@ -1,0 +1,47 @@
+div{
+        margin-left: 212px;
+        margin-top: -16px;
+        height: calc(95.1vh);
+        width: calc(100vw - 212px);
+        background: rgb(255, 255, 255);
+        z-index: -1;
+    }
+    textarea:focus{
+        outline: none;
+    }
+
+    #titulo{
+        margin-left: 20px;
+        font-size: 30px;
+        width:calc(100% - 20px);
+        border: none;
+        text-align:start;
+        
+    }
+    #texto {
+        width: calc(100% - 20px);
+        height: calc(100% - 60px); /* ajuste se precisar deixar espaço pro título */
+        margin-left: 20px;
+        margin-top: 20px;
+        padding: 16px;
+        border: none;
+        resize: none;
+        font-family: monospace;
+        font-size: 1rem;
+        box-sizing: border-box;
+    
+    }
+    nav{
+        position: absolute;
+        margin-top: -55px;
+        z-index: 102;
+    }
+    nav ul{
+    display: flex;
+    list-style: none;
+
+    }
+
+    nav ul li{
+        margin-right: 10px;
+    }

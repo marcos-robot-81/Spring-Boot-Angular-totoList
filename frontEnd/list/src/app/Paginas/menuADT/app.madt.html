@@ -1,6 +1,39 @@
 <nav>
-     <p></p>
+     <div id="blocoSelecionado">
+         <p id="Titulo">{{blocoAtual}}</p>
+         <p id="delete" (click)="deletabloco()">Deleta bloco</p>
 
-     
+     </div>
+     <div id="bacloListe">
+          @for(s of blocos; track s.id) {
+              <div class="bloco" (click)="celecinaBloco(s.id)">
+                  <p>{{s.Title}}</p>
+              </div>
+          }
+     </div>
+
+
+
 </nav>
-<app-aria-detrabalho  />
+
+@if(paginaS != -1){
+<pajina id="pajina"
+    [titulo]="blocos[psbloco].folahas[paginaS].titulo"
+    [text]="blocos[psbloco].folahas[paginaS].texto"
+    (sai)="celecinaBloco(psbloco)"
+/>
+}@else {
+@if(idBlocoAtual == 0){
+     
+
+
+}@else{
+<app-aria-detrabalho 
+    [folhas]="blocos[psbloco].folahas"
+    (XDeleteFolha)="deletaFolha($event);"
+    (folhaSelec)="abriPagina($event)"
+    
+    />
+}
+}
+

@@ -1,0 +1,14 @@
+#div{
+    position: absolute;
+    margin-left: 212px;
+    margin-top: -16px;
+    background: rgb(255, 255, 255);
+    justify-content: inherit;
+}
+#div div{
+    margin-left: 0px;
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+
+}

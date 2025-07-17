@@ -10,7 +10,6 @@ public class DBUsuario {
     private String nome;
     private String password;
 
-    public DBUsuario(){}
     public DBUsuario(String name, String password){
         this.nome = name;
         this.password = password;

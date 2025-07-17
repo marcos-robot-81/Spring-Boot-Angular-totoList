@@ -1,0 +1,28 @@
+<div id="div">
+    <div>
+        @for(dado of folhas ; track dado.id){
+
+            @if(dado.id == sele ){
+                <folha 
+                indicado="c"
+                titulo={{dado.titulo}}
+                texto={{dado.texto}}
+                id={{dado.id}}
+                (celeção)="receberId($event)" (MeDeletar)="deletafolha($event)" 
+
+                />
+            }@else{
+                <folha
+                titulo={{dado.titulo}} 
+                texto={{dado.texto}} 
+                id={{dado.id}} 
+                (celeção)="receberId($event)" 
+                (MeDeletar)="deletafolha($event)" 
+
+                />  
+            }
+            
+        }
+        
+    </div>          
+</div>
