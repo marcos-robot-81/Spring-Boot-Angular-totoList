@@ -1,26 +1,37 @@
 <nav>
      <div id="blocoSelecionado">
          <p id="Titulo">{{blocoAtual}}</p>
-         <p id="delete" (click)="deletabloco()">Deleta bloco</p>
+         <p id="delete" (click)="deletarBloco()">Deleta</p>
+         <p id="newBloco" (click)="novablocod(true)"> new</p>
+         @if( idBlocoAtual > 0){
+            <p id="newf" (click)="novafolhad(true)" >new folha</p>
+         }
+         
 
      </div>
      <div id="bacloListe">
           @for(s of blocos; track s.id) {
-              <div class="bloco" (click)="celecinaBloco(s.id)">
-                  <p>{{s.Title}}</p>
+              <div class="bloco" (click)="selecionarBloco(s.id)">
+                  <p>- {{s.titulo}}</p>
               </div>
           }
      </div>
 
-
-
 </nav>
 
-@if(paginaS != -1){
+@if(controleAdicionarB == true){
+  
+    <windowAddBloco (xsai)="novablocod($event)" (xcria)="novobloco($event)"/>
+
+}@if(controleAdicionarF == true){
+    <windowAddfolha (xsai)="novafolhad($event)" (xcria)="novafolha($event)" />
+}
+
+@if(paginaSelecionada != -1){
 <pajina id="pajina"
-    [titulo]="blocos[psbloco].folahas[paginaS].titulo"
-    [text]="blocos[psbloco].folahas[paginaS].texto"
-    (sai)="celecinaBloco(psbloco)"
+    [titulo]="blocos[paginaSelecionada].folhas[paginaSelecionada].titulo"
+    [text]="blocos[paginaSelecionada].folhas[paginaSelecionada].texto"
+    (saix)="salvarPagina($event);"
 />
 }@else {
 @if(idBlocoAtual == 0){
@@ -29,9 +40,9 @@
 
 }@else{
 <app-aria-detrabalho 
-    [folhas]="blocos[psbloco].folahas"
-    (XDeleteFolha)="deletaFolha($event);"
-    (folhaSelec)="abriPagina($event)"
+    [folhas]="blocos[indiceBloco].folhas"
+    (XDeleteFolha)="deletarFolha($event);"
+    (folhaSelec)="abrirPagina($event)"
     
     />
 }

@@ -7,12 +7,19 @@ import { Component,Input, Output, EventEmitter } from "@angular/core";
 
 <div (click)="sele()"  id="{{indicado}}">
         <nav>
-        <h4>{{titulo}}</h4>
+        @if(titulo.length >= 16){
+            <h4>{{titulo.slice(0,16)+"..."}}</h4>
+        }@else{
+            <h4>{{titulo}}</h4>
+        }
         <p id="x" (click)="XMeDeletar(); $event.stopPropagation()" >X</p>
 
     </nav>
-    <p>{{texto}}</p>
-    
+    @if(texto.length >= 373){
+        <p id="text" >{{texto.slice(0,333)+"..."}}</p>
+    }@else{
+        <p id="text" >{{texto.slice(0,373)}}</p>
+    }
 </div>
 
  `,
@@ -44,6 +51,9 @@ import { Component,Input, Output, EventEmitter } from "@angular/core";
     div p{
         margin: 10px;
         
+    }
+    #text{
+        overflow-wrap: break-word;
     }
     #c{
         box-shadow:5px 5px 5px rgba(0,0,0,1);

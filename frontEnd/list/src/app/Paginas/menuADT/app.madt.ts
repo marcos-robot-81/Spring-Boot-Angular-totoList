@@ -1,108 +1,131 @@
 import { Component } from "@angular/core"
 import { AriaDetrabalho } from "./quadroBraco/app.adt"
 import { pajina } from "./quadroBraco/blocoDeNotas/pajinaDeEdição/app.pajina";
+import { FormsModule } from "@angular/forms";
+import { windowsAddBloco, windowsAddFolha } from "./quadroBraco/blocoDeNotas/addBloco/app.aadb";
+
+
+interface Folha {
+    id: number;
+    titulo: string;
+    texto: string;
+}
+
+interface Bloco {
+    id: number;
+    titulo: string;
+    folhas: Folha[];
+}
+
 
 @Component({
     selector: 'app-menu-adt',
     templateUrl: './app.madt.html',
     styleUrls: ['./app.madt.css'],
-    imports: [AriaDetrabalho, pajina],
+    imports: [AriaDetrabalho, pajina, FormsModule, windowsAddBloco, windowsAddFolha],
 })
 export class AppMenuADT {
     blocoAtual = '';
     idBlocoAtual = 0;
-    psbloco = 0;
-    paginaS = -1;
+    indiceBloco = 0;
+    paginaSelecionada = -1;
+    controleAdicionarB = false;
+    controleAdicionarF = false;
 
 
-    blocos = [
-        {
-            id: 1, Title: "Titulo 1", folahas: [
-                { titulo: "impostos", texto: "Cria um text sobre a criação de impostos", id: 0 },
-                { titulo: "Lei 11/240", texto: "E crime plaplapla", id: 1 },
-                { titulo: "Lei 12/250", texto: "E crime plaplapla", id: 2 },
-                { titulo: "Lei 13/260", texto: "E crime plaplapla", id: 3 },
-                { titulo: "Lei 14/270", texto: "E crime plaplapla", id: 4 },
-                { titulo: "Lei 15/280", texto: "E crime plaplapla", id: 5 },
-            ]
-        },
-        {
-            id: 2, Title: "Titulo 2", folahas: [
-                { titulo: "impostos2", texto: "Cria um text sobre a criação de impostos", id: 0 },
-                { titulo: "Lei 62/290", texto: "E crime plaplapla", id: 2 },
-                { titulo: "Lei 64/210", texto: "E crime plaplapla", id: 3 },
-                { titulo: "Lei 65/250", texto: "E crime plaplapla", id: 4 },
-                { titulo: "Lei 66/220", texto: "E crime plaplapla", id: 5 },
-            ]
-        }, {
-            id: 3, Title: "test", folahas: [
-                { titulo: "impostos2", texto: "Cria um text sobre a criação de impostos", id: 0 },
+    blocos: Bloco[] = [];
 
-            ]
-        }
-    ]
-
-    deletaFolha(idFolha: number) {
-        let arraytemp = this.blocos[this.psbloco].folahas;
-        let traferecia = [];
-        for (var i = 0; i < arraytemp.length; i++) {
-            if (arraytemp[i].id != idFolha) {
+    deletarFolha(idFolha: number) {
+        let arrayTemp = this.blocos[this.indiceBloco].folhas;
+        let transferencia = [];
+        for (let i = 0; i < arrayTemp.length; i++) {
+            if (arrayTemp[i].id != idFolha) {
                 if (i > idFolha) {
-                    traferecia[i - 1] = arraytemp[i];
-                    traferecia[i - 1].id = i - 1;
+                    transferencia[i - 1] = arrayTemp[i];
+                    transferencia[i - 1].id = i - 1;
                 } else {
-                    traferecia[i] = arraytemp[i];
+                    transferencia[i] = arrayTemp[i];
                 }
             }
         }
-        this.blocos[this.psbloco].folahas = traferecia;
+        this.blocos[this.indiceBloco].folhas = transferencia;
     }
 
-    deletabloco() {
+    deletarBloco() {
         if (this.blocoAtual == '') {
-            window.alert("Bloco não celecionado")
+            window.alert("Bloco não selecionado")
         } else {
-            let arraytemp = this.blocos;
-            let traferecia = [];
+            let arrayTemp = this.blocos;
+            let transferencia = [];
             if (this.blocos.length <= 1) {
-                this.blocos = [{
-                    id: 1, Title: "New", folahas: []
-                }];
-                this.psbloco = 0;
+                this.blocos = [];
+                this.indiceBloco = 0;
                 this.blocoAtual = "Deletado";
             } else {
-                for (var i = 0; i < this.blocos.length; i++) {
-                    if( i != this.psbloco){
-                    if ( i > this.psbloco) {
-                        traferecia[i - 1] = arraytemp[i];
-                        traferecia[i - 1].id = i - 1;
-                    } else{
-                        traferecia[i] = arraytemp[i];
+                for (let i = 0; i < this.blocos.length; i++) {
+                    if (i != this.indiceBloco) {
+                        if (i > this.indiceBloco) {
+                            transferencia[i - 1] = arrayTemp[i];
+                            transferencia[i - 1].id = i - 1;
+                        } else {
+                            transferencia[i] = arrayTemp[i];
+                        }
                     }
                 }
-            }
-                this.blocos = traferecia;
-                this.psbloco = 0;
+                this.blocos = transferencia;
+                this.indiceBloco = 0;
+                this.idBlocoAtual = 0;
                 this.blocoAtual = "Deletado";
             }
         }
     }
 
-    celecinaBloco(id: number) {
-        this.idBlocoAtual = id;
-        this.psbloco = (this.blocos.findIndex(item => item.id == id))
-        this.blocoAtual = this.blocos[this.psbloco].Title;
-        this.paginaS = -1;   
+    selecionarBloco(id: number) {
+        if (this.paginaSelecionada == -1) {
+            this.idBlocoAtual = id;
+            this.indiceBloco = this.blocos.findIndex(item => item.id == id)
+            this.blocoAtual = this.blocos[this.indiceBloco].titulo;
+        } else {
+            window.alert("Você irá perder todos os dados, por favor clique em sair")
+        }
     }
 
+    abrirPagina(id: number) {
+        this.paginaSelecionada = id;
+    }
+
+    salvarPagina(t: { titulo: string, text: string }) {
+        console.log(t.titulo + " " + t.text);
+        this.blocos[this.indiceBloco].folhas[this.paginaSelecionada].titulo = t.titulo;
+        this.blocos[this.indiceBloco].folhas[this.paginaSelecionada].texto = t.text;
+        this.paginaSelecionada = -1;
+    }
+
+    novablocod(v: boolean) {
+        this.controleAdicionarB = v;
+    }
     
-    abriPagina(id: number) {
-        this.paginaS = id;
+    novobloco(n: String){
+            
+            let b = {id: this.blocos.length+1, titulo: ""+n, folhas: []};
+            this.blocos[this.blocos.length] = b;
+            this.novablocod(false);
+            console.log(b);
     }
-    salvaPagina(titulo: String, text:String){
-        this.blocos[this.psbloco].folahas[this.paginaS].titulo = ''
-        this.blocos[this.psbloco].folahas[this.paginaS].texto = ''
+    novafolhad(v: boolean){
+        this.controleAdicionarF = v;
+    }
 
+    novafolha(n: string){
+        let v = {titulo: ""+n ,texto: "", id: this.blocos[this.indiceBloco].folhas.length }
+        if(this.idBlocoAtual > 0){
+        this.blocos[this.indiceBloco].folhas[
+            this.blocos[this.indiceBloco].folhas.length
+        ] = v;
+        this.controleAdicionarF = false;
+        }else{
+            window.alert("Selecione um bloco")
+        }
     }
 
 }

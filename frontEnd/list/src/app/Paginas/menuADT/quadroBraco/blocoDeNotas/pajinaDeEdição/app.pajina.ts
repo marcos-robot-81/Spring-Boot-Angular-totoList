@@ -1,26 +1,22 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'pajina',
     templateUrl:`./app.pajina.html`,
     styleUrls: ["./app.pajina.css"],
-
+    imports: [ FormsModule ]
 }) export class pajina {
-    @Input() titulo = '';
+    @Input() titulo = "";
     @Input() text = '';
     @Output() saix = new EventEmitter();
 
-    form = new FormGroup({
-    tit: new FormControl(''),
-    tex: new FormControl(''),
-    });
 
+    
 
     sai(){
-        this.saix.emit();
-
+        const t = {titulo: this.titulo,text: this.text};
+        this.saix.emit(t);
     }
 }
 

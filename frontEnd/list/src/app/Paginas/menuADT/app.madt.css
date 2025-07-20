@@ -31,6 +31,14 @@ nav{
     padding-bottom: 3px;
     border-radius: 5px;
 }
+#newBloco{
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 60px;
+    border: 1px solid black;
+    padding: 1px 8px 1px 8px;
+    border-radius: 5px
+}
 #Titulo{
     position: absolute;
     margin: 15px 15px;
@@ -38,3 +46,13 @@ nav{
 .bloco{
     margin-left: 15px;
 }
+#newf{
+    position: absolute;
+    margin-top: -28px;
+    margin-left: 18px;
+    border: 1px solid black;
+    padding: 1px 8px 1px 8px;
+    border-radius: 5px
+}
+
+
