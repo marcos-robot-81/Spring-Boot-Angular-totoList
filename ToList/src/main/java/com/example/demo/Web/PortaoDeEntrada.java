@@ -44,5 +44,13 @@ public class PortaoDeEntrada {
         String v = GService.cadastraUsuario(usu);
         return v;
     }
+    @PostMapping("/dados/get")
+    public String dados(@RequestBody String dados){
+
+
+
+        String n = "j";
+        return n;
+    }
 
 }
