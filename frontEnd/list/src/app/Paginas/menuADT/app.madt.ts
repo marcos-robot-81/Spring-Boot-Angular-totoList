@@ -95,7 +95,6 @@ export class AppMenuADT {
     }
 
     salvarPagina(t: { titulo: string, text: string }) {
-        console.log(t.titulo + " " + t.text);
         this.blocos[this.indiceBloco].folhas[this.paginaSelecionada].titulo = t.titulo;
         this.blocos[this.indiceBloco].folhas[this.paginaSelecionada].texto = t.text;
         this.paginaSelecionada = -1;
@@ -110,7 +109,6 @@ export class AppMenuADT {
             let b = {id: this.blocos.length+1, titulo: ""+n, folhas: []};
             this.blocos[this.blocos.length] = b;
             this.novablocod(false);
-            console.log(b);
     }
     novafolhad(v: boolean){
         this.controleAdicionarF = v;
