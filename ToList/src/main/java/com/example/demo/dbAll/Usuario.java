@@ -4,15 +4,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Usuarios")
-public class DBUsuario {
+public class Usuario {
     @Id
     private String id;
     private String nome;
     private String password;
 
-    public DBUsuario(){};
+    public Usuario(){};
 
-    public DBUsuario(String name, String password){
+    public Usuario(String name, String password){
         this.nome = name;
         this.password = password;
     }

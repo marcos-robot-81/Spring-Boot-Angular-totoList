@@ -1,8 +1,10 @@
-package com.example.demo.Login;
+package com.example.demo.LoginTest;
+
+import com.example.demo.dbAll.Usuario;
 
 import java.util.ArrayList;
 
-public class Tbanco {
+public class TbancoUsuarios {
 
     ArrayList<Usuario> Usu = new ArrayList<>();
     Usuario u1 = new Usuario("marcos","12345678");

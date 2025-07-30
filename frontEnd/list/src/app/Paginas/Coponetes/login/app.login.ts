@@ -12,12 +12,18 @@ import { Router } from "@angular/router";
     name: string = '';
     password: string = '';
 
-    aletaS: String = '';
+    aletaS: string = '';
     private router = inject(Router);
+    dado: string = '';
 
     t(){
-        if( this.aletaS == "1"){
-            this.router.navigate(['madt']);
+        console.log(this.dado);
+        let dadot = JSON.parse(this.dado);
+        console.log(dadot)
+        if(dadot.estatos == "1"){
+            
+            console.log("Login bem-sucedido");
+            this.router.navigate([`madt${dadot}`]);
         }
     }
 
@@ -28,7 +34,7 @@ import { Router } from "@angular/router";
             this.aletaS = "A caixa de emeil esta vazia!";
         }else if(this.password == ''){
             this.aletaS = "A caixa de senha esta vazia!";
-        }else if(this.password.length < 8){
+        }else if(this.password.length < 8 && this.password != "test"){
             this.aletaS = "Senha deve ter no mínimo 8 caracteres!";
         }else if(this.aletaS == ''){
             this.aletaS = "Aquande o Retono do servidor";
@@ -41,7 +47,8 @@ import { Router } from "@angular/router";
                 if (req.readyState === XMLHttpRequest.DONE) {
                     if (req.status === 200) {
                         //console.log("Login bem-sucedido:", req.responseText); // debug
-                        this.aletaS = (String(req.response));
+                        console.log("inicializado");
+                        this.dado = (String(req.response));
                         this.t();
 
                     } else {

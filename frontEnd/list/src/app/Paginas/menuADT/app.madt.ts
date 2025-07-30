@@ -1,8 +1,9 @@
-import { Component } from "@angular/core"
+import { Component, inject } from "@angular/core"
 import { AriaDetrabalho } from "./quadroBraco/app.adt"
 import { pajina } from "./quadroBraco/blocoDeNotas/pajinaDeEdição/app.pajina";
 import { FormsModule } from "@angular/forms";
 import { windowsAddBloco, windowsAddFolha } from "./quadroBraco/blocoDeNotas/addBloco/app.aadb";
+import { Router } from "@angular/router";
 
 
 interface Folha {
@@ -31,9 +32,11 @@ export class AppMenuADT {
     paginaSelecionada = -1;
     controleAdicionarB = false;
     controleAdicionarF = false;
-
-
     blocos: Bloco[] = [];
+
+    
+
+    
 
     deletarFolha(idFolha: number) {
         let arrayTemp = this.blocos[this.indiceBloco].folhas;

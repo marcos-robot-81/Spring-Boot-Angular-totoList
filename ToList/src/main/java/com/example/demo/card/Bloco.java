@@ -1,49 +1,39 @@
 package com.example.demo.card;
 
+import java.util.LinkedList;
+
 public class Bloco {
-    private int tipo = 0;
-    private String titulo;
-    private String text;
-    private int valor = 0;
+    private int id;
+    private String Titulo;
+    private LinkedList<Folha> bloco = new LinkedList<>();
 
-
-
-    // Comtruto
-    public Bloco(int tipo){
-        this.tipo = tipo;
-        this.titulo = "New";
+    // -- Folhas
+    public LinkedList<Folha> getBloco() {
+        return bloco;
     }
-    public Bloco(byte tipo ,String titulo,String text){
-        this.tipo = tipo;
-        this.text = text;
-        this.titulo = titulo;
+    public void setBloco(LinkedList<Folha> bloco) {
+        this.bloco = bloco;
     }
 
-    // Get e set
-    public void setText(String text) {
-        this.text = text;
+    // --  Metados
+    // Adciona um novo Folha
+    public void addBloco(Folha b){
+        getBloco().add(b);
     }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    // Retona um Folha
+    public Folha getBloco(int a){
+        return this.bloco.get(a);
     }
-    public void setTipo(int valor){
-        this.valor = valor;
-    }
-
-    public String getText() {
-        return text;
+    public int getTotalDeBlocos(){
+        return bloco.size();
     }
 
-    public String getTitulo() {
-        return titulo;
+    public void primerabloco(){
+        this.Titulo = "bem vindo";
+        Folha f = new Folha(0,"0");
+        f.primeiraFolha();
+        bloco.add(f);
     }
 
-    public int getTipo() {
-        return tipo;
-    }
 
-    public int getValor() {
-        return valor;
-    }
-    // --
 }
