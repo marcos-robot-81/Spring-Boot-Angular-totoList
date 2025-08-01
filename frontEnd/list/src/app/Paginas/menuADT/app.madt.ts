@@ -32,6 +32,8 @@ export class AppMenuADT {
     paginaSelecionada = -1;
     controleAdicionarB = false;
     controleAdicionarF = false;
+
+   
     blocos: Bloco[] = [];
 
     

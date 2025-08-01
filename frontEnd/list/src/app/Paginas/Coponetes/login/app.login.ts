@@ -17,13 +17,9 @@ import { Router } from "@angular/router";
     dado: string = '';
 
     t(){
-        console.log(this.dado);
         let dadot = JSON.parse(this.dado);
-        console.log(dadot)
-        if(dadot.estatos == "1"){
-            
-            console.log("Login bem-sucedido");
-            this.router.navigate([`madt${dadot}`]);
+        if(dadot.estatos == "1"){            
+            this.router.navigate([`madt`]);
         }
     }
 
