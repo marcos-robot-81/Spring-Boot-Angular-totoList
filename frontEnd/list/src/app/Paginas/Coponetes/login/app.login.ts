@@ -1,6 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import { DadosService } from "../../menuADT/dados.service";
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from "@angular/router";
 })export class AppLogin{
     name: string = '';
     password: string = '';
-
+    DadosService = inject(DadosService);
     aletaS: string = '';
     private router = inject(Router);
     dado: string = '';
@@ -19,6 +20,7 @@ import { Router } from "@angular/router";
     t(){
         let dadot = JSON.parse(this.dado);
         if(dadot.estatos == "1"){            
+            this.DadosService.setDados(dadot);
             this.router.navigate([`madt`]);
         }
     }

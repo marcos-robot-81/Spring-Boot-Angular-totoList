@@ -4,6 +4,7 @@ import { pajina } from "./quadroBraco/blocoDeNotas/pajinaDeEdição/app.pajina";
 import { FormsModule } from "@angular/forms";
 import { windowsAddBloco, windowsAddFolha } from "./quadroBraco/blocoDeNotas/addBloco/app.aadb";
 import { Router } from "@angular/router";
+import { DadosService } from "../menuADT/dados.service";
 
 
 interface Folha {
@@ -32,14 +33,18 @@ export class AppMenuADT {
     paginaSelecionada = -1;
     controleAdicionarB = false;
     controleAdicionarF = false;
-
-   
+    DadosService = inject(DadosService);
+    dados: any;
     blocos: Bloco[] = [];
 
+    ngOnInit() {
+        this.dados = this.DadosService.getDados()
+        console.log(this.dados);
+        this.blocos = this.dados.dados.dados;
+        console.log(this.blocos);
+    }
+   
     
-
-    
-
     deletarFolha(idFolha: number) {
         let arrayTemp = this.blocos[this.indiceBloco].folhas;
         let transferencia = [];
@@ -110,7 +115,8 @@ export class AppMenuADT {
     }
     
     novobloco(n: String){
-            
+
+
             let b = {id: this.blocos.length+1, titulo: ""+n, folhas: []};
             this.blocos[this.blocos.length] = b;
             this.novablocod(false);
