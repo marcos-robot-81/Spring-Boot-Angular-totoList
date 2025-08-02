@@ -36,12 +36,18 @@ public class PortaoDeEntrada {
         return v;
     }
     @PostMapping("/dados/get")
-    public String dados(@RequestBody String dados){
+    public String dados(@RequestBody String chave){
 
 
 
         String n = "j";
         return n;
+    }
+
+    @PostMapping("/dados/salva")
+    public String salva(@RequestBody String dados){
+
+        return "0";
     }
 
 }

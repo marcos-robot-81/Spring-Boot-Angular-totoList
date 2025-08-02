@@ -4,8 +4,8 @@ public class Folha {
     private String id;
     private int tipo = 0;
     private String titulo;
-    private String text;
-    private int valor = 0;
+    private String texto;
+
 
 
     // Comtruto
@@ -16,25 +16,25 @@ public class Folha {
     }
     public Folha(byte tipo , String titulo, String text){
         this.tipo = tipo;
-        this.text = text;
+        this.texto = text;
         this.titulo = titulo;
     }
     public Folha(){}
 
 
     // Get e set
-    public void setText(String text) {
-        this.text = text;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
     public void setTipo(int valor){
-        this.valor = valor;
+        this.tipo = valor;
     }
 
-    public String getText() {
-        return text;
+    public String getTexto() {
+        return texto;
     }
 
     public String getTitulo() {
@@ -45,14 +45,10 @@ public class Folha {
         return tipo;
     }
 
-    public int getValor() {
-        return valor;
-    }
-
     public void primeiraFolha(){
         this.id = "0";
         this.titulo = "Primeira folha";
-        this.text = "Bem Vindo :)";
+        this.texto = "Bem Vindo :)";
 
     }
     // --

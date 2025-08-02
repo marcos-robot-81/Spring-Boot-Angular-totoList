@@ -40,8 +40,14 @@ export class AppMenuADT {
     ngOnInit() {
         this.dados = this.DadosService.getDados()
         console.log(this.dados);
-        this.blocos = this.dados.dados.dados;
+        this.blocos = this.dados.dados.dados || [];
         console.log(this.blocos);
+        console.log(this.blocos[0].folhas[0].texto);
+    }
+
+    salva(){
+        DadosService.setDados(this.dados);
+        DadosService.SalvarDadosServer();
     }
    
     

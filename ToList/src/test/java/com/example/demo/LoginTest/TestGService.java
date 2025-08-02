@@ -21,7 +21,7 @@ public class TestGService {
         public void TCadstro() {
             String v = "";
             try {
-                Usuario use = new Usuario("juzer", "test");
+                Usuario use = new Usuario("test", "test");
                 v = GService.cadastraUsuario(use);
                 System.out.println(v);
                 if (v == "escolha outro nome.") {
@@ -39,7 +39,7 @@ public class TestGService {
         @Test
         public void TvalidadoDeUsuarios() {
             try {
-                String usex = "[{\"name\":\"juzer\",\"password\":\"test\"}]";
+                String usex = "[{\"name\":\"test\",\"password\":\"test\"}]";
                 String v = GService.validado(usex);
                 System.out.println(v);
                 assertEquals(true, (v.length() > 4 || v.equals("0")));

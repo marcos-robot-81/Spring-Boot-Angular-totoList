@@ -67,5 +67,14 @@ public class GService {
         DadosService.AtualiaDados(dadosT.getDados());
         return true;
     }
+    public String seve(String caraquiteres){
+        Gson gson = new Gson();
+        DadosT dadosT = gson.fromJson(caraquiteres, DadosT.class);
+
+        
+
+        return "0";
+    }
+
 
 }
