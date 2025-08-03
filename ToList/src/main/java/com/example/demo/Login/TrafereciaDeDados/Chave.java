@@ -10,9 +10,11 @@ public class Chave {
     @Id
     private String credeciais; /** Identificado di  **/
     private LocalDate diaDaCriação;
+    private String id;
 
     public Chave(String id) {
         LocalDate a = LocalDate.now();
+        this.id = id;
         this.diaDaCriação = a;
         this.credeciais = id+a.toString().replace("-","");;
 

@@ -4,12 +4,12 @@ import com.example.demo.dbAll.Usuario;
 import java.time.LocalDate;
 
 public class V_altenticado {
-
+private Chave chave;
 public String criaChavi(Usuario usu){
-
-    Chave chave = new Chave(usu.getId());
+    this.chave = new Chave(usu.getId());
     return chave.getCredeciais();
 }
-
-
+    public Chave getChave() {
+        return chave;
+    }
 }

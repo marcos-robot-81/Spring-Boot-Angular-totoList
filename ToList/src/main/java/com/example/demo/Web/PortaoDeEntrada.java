@@ -37,17 +37,14 @@ public class PortaoDeEntrada {
     }
     @PostMapping("/dados/get")
     public String dados(@RequestBody String chave){
-
-
-
         String n = "j";
         return n;
     }
 
     @PostMapping("/dados/salva")
     public String salva(@RequestBody String dados){
-
-        return "0";
+        GService.seve(dados);
+        return "ok";
     }
 
 }

@@ -19,6 +19,7 @@ import { DadosService } from "../../menuADT/dados.service";
 
     t(){
         let dadot = JSON.parse(this.dado);
+        console.log(dadot);
         if(dadot.estatos == "1"){            
             this.DadosService.setDados(dadot);
             this.router.navigate([`madt`]);
@@ -45,7 +46,6 @@ import { DadosService } from "../../menuADT/dados.service";
                 if (req.readyState === XMLHttpRequest.DONE) {
                     if (req.status === 200) {
                         //console.log("Login bem-sucedido:", req.responseText); // debug
-                        console.log("inicializado");
                         this.dado = (String(req.response));
                         this.t();
 

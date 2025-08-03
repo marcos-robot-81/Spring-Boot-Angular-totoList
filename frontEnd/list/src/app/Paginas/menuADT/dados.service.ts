@@ -1,8 +1,22 @@
 import { Injectable } from "@angular/core";
 
+interface Bloco {
+    id: number;
+    titulo: string;
+    folhas: Folha[];
+}
+interface Folha {
+    id: number;
+    titulo: string;
+    texto: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })export class DadosService {
+    static setBlocos(blocos: Bloco[]) {
+        throw new Error("Method not implemented.");
+    }
     static setDados(dados: any) {
         throw new Error("Method not implemented.");
     }
@@ -18,6 +32,10 @@ import { Injectable } from "@angular/core";
     }
     getDados() {
         return this.dados;
+    }
+    setBlocos(blocos: any) {
+        this.dados.conteudo.dados = blocos;
+        console.log(this.dados);
     }
 
     getDadosServer(chava:string){
@@ -43,15 +61,17 @@ import { Injectable } from "@angular/core";
         req.onreadystatechange = () => {
             if (req.readyState === XMLHttpRequest.DONE) {
                 if (req.status === 200) {
+                    console.log("server");
                     console.log("Dados salvos no servidor:", req.responseText);
                 } else {
                     console.error("Erro ao salvar dados no servidor:", req.status, req.statusText);
                 }
             }
         };
-        req.open("POST", "http://localhost:8080/dados/set", true);
+        let mesagem = JSON.stringify(this.dados);
+        req.open("POST", "http://localhost:8080/dados/salva", true);
         req.setRequestHeader("Content-Type", "text/plain");
-        req.send(JSON.stringify(this.dados));
+        req.send((JSON.stringify(mesagem)));
     }
 
 }

@@ -38,16 +38,15 @@ export class AppMenuADT {
     blocos: Bloco[] = [];
 
     ngOnInit() {
-        this.dados = this.DadosService.getDados()
-        console.log(this.dados);
-        this.blocos = this.dados.dados.dados || [];
-        console.log(this.blocos);
-        console.log(this.blocos[0].folhas[0].texto);
+        this.dados = this.DadosService.getDados();
+        this.blocos = this.dados.conteudo.dados || [];
     }
 
-    salva(){
-        DadosService.setDados(this.dados);
-        DadosService.SalvarDadosServer();
+    salva(){ 
+        console.log("Iniciado salvameto");
+        this.DadosService.setBlocos(this.blocos);
+        console.log("Iniciado comunicação com o servidor");
+        this.DadosService.SalvarDadosServer();
     }
    
     
@@ -114,6 +113,7 @@ export class AppMenuADT {
         this.blocos[this.indiceBloco].folhas[this.paginaSelecionada].titulo = t.titulo;
         this.blocos[this.indiceBloco].folhas[this.paginaSelecionada].texto = t.text;
         this.paginaSelecionada = -1;
+        this.salva();
     }
 
     novablocod(v: boolean) {

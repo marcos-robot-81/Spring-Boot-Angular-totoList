@@ -1,8 +1,7 @@
 package com.example.demo.Login;
 
-import com.example.demo.Login.TrafereciaDeDados.DadosT;
+import com.example.demo.Login.TrafereciaDeDados.Cabesario;
 import com.example.demo.Login.TrafereciaDeDados.V_altenticado;
-import com.example.demo.card.Dados;
 import com.example.demo.dbAll.Usuario;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,13 @@ public class GService {
 
     private final UsuarioService usuarioService;
     private final DadosService DadosService;
+    private final ChaveService chaveService;
 
     @Autowired
-    public GService(UsuarioService usuarioService, DadosService dadosService) {
+    public GService(UsuarioService usuarioService, DadosService dadosService,ChaveService chaveService) {
         this.usuarioService = usuarioService;
         this.DadosService = dadosService;
+        this.chaveService = chaveService;
     }
 
     // Valida usuario
@@ -38,10 +39,11 @@ public class GService {
         for(int i = 0;i < ListUsuarios.size();i++){
             if(  (  (uso.getNome()).equals(ListUsuarios.get(i).getNome()) ) && ((uso.getPassword()).equals(ListUsuarios.get(i).getPassword()) ) ){
                 V_altenticado val = new V_altenticado();
-                DadosT dadosT = new DadosT(val.criaChavi(ListUsuarios.get(i)));
+                Cabesario dadosT = new Cabesario(val.criaChavi(ListUsuarios.get(i)));
                 // cria adcionameto de dados
-                dadosT.setDados(DadosService.getDados(dadosT.getIdUse()));
+                dadosT.setConteudo(DadosService.getDados(dadosT.getIdUse()));
                 dadosT.setEstatus("1");
+                chaveService.newChave(val.getChave());
                 Gson gson = new Gson();
                 return gson.toJson(dadosT);
             }
@@ -63,15 +65,19 @@ public class GService {
     }
     public boolean AtualizaDados(String text){
         Gson gson = new Gson();
-        DadosT dadosT = gson.fromJson(text, DadosT.class);
-        DadosService.AtualiaDados(dadosT.getDados());
+        Cabesario dadosT = gson.fromJson(text, Cabesario.class);
+        DadosService.AtualiaDados(dadosT.getConteudo());
         return true;
     }
     public String seve(String caraquiteres){
         Gson gson = new Gson();
-        DadosT dadosT = gson.fromJson(caraquiteres, DadosT.class);
+        caraquiteres = caraquiteres.replace("\\","");
+        caraquiteres = caraquiteres.substring(1,caraquiteres.length()-1);
+        Cabesario dadosT =  gson.fromJson(caraquiteres, Cabesario.class);
 
-        
+        if( chaveService.verificaChavaAtiva(dadosT.getCredenciais())){
+            DadosService.AtualiaDados(dadosT.getConteudo());
+        }
 
         return "0";
     }
