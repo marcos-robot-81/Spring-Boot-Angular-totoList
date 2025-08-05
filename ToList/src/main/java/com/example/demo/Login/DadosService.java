@@ -16,6 +16,7 @@ public class DadosService {
     public DadosService(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
+
     @Autowired
     private OperadoCrudDados repository;
     //--
@@ -30,9 +31,9 @@ public class DadosService {
         return dados;
     }
     public void AtualiaDados(Dados dados){
-        Query query = new Query(Criteria.where("id").is(dados.getId()));
-        Update update = new Update().set("dados", dados);
-        mongoTemplate.updateFirst(query, update, Dados.class);
+        repository.deleteById(dados.getId());
+        repository.save(dados);
+
     }
 
 }

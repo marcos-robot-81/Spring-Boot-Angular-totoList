@@ -15,6 +15,7 @@ public class Cabesario {
         return credenciais;
     }
     public String getIdUse() {
+
         return credenciais.substring(0,credenciais.length()-8);
     }
 

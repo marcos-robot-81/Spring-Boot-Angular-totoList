@@ -39,9 +39,10 @@ public class GService {
         for(int i = 0;i < ListUsuarios.size();i++){
             if(  (  (uso.getNome()).equals(ListUsuarios.get(i).getNome()) ) && ((uso.getPassword()).equals(ListUsuarios.get(i).getPassword()) ) ){
                 V_altenticado val = new V_altenticado();
-                Cabesario dadosT = new Cabesario(val.criaChavi(ListUsuarios.get(i)));
+                val.criaChavi(ListUsuarios.get(i));
+                Cabesario dadosT = new Cabesario(val.getChaveC());
                 // cria adcionameto de dados
-                dadosT.setConteudo(DadosService.getDados(dadosT.getIdUse()));
+                dadosT.setConteudo(DadosService.getDados(ListUsuarios.get(i).getId()));
                 dadosT.setEstatus("1");
                 chaveService.newChave(val.getChave());
                 Gson gson = new Gson();
@@ -77,6 +78,7 @@ public class GService {
 
         if( chaveService.verificaChavaAtiva(dadosT.getCredenciais())){
             DadosService.AtualiaDados(dadosT.getConteudo());
+            return "1";
         }
 
         return "0";

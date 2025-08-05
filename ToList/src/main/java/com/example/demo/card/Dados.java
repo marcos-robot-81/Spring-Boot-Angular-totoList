@@ -10,18 +10,18 @@ import java.util.List;
 public class Dados {
     @Id
     private String id;
-    private List<Bloco> dados = new ArrayList<>();
+    private List<Bloco> blocos = new ArrayList<>();
     // comtruto
 
     public Dados(){}
     public Dados(String id){this.id = id;}
-    public Dados(String id, List<Bloco> dados){this.id = id; this.dados = dados;}
+    public Dados(String id, List<Bloco> dados){this.id = id; this.blocos = dados;}
     
-    public List<Bloco> getDados() {
-        return dados;
+    public List<Bloco> getBlocos() {
+        return blocos;
     }
-    public void setDados(List<Bloco> dados) {
-        this.dados = dados;
+    public void setBlocos(List<Bloco> blocos) {
+        this.blocos = blocos;
     }
 
     public String getId() {
@@ -33,11 +33,11 @@ public class Dados {
     }
 
     public void addbloco(Bloco b){
-        this.dados.add(b);
+        this.blocos.add(b);
     }
     public void primeroDado(){
         Bloco b = new Bloco();
         b.primerabloco();
-        this.dados.add(b);
+        this.blocos.add(b);
     }
 }

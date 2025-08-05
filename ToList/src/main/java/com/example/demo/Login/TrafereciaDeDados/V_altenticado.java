@@ -12,4 +12,7 @@ public String criaChavi(Usuario usu){
     public Chave getChave() {
         return chave;
     }
+    public String getChaveC(){
+    return chave.getCredeciais();
+    }
 }
