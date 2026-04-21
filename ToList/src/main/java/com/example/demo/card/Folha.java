@@ -6,8 +6,6 @@ public class Folha {
     private String titulo;
     private String texto;
 
-
-
     // Comtruto
     public Folha(int tipo, String id){
         this.tipo = tipo;
@@ -20,7 +18,6 @@ public class Folha {
         this.titulo = titulo;
     }
     public Folha(){}
-
 
     // Get e set
     public void setTexto(String texto) {

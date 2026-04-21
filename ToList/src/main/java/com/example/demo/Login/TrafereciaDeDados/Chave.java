@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Document(collection = "chave")
 public class Chave {
     @Id
-    private String credeciais; /** Identificado di  **/
+    private String credeciais; /** Identificado id  **/
     private LocalDate diaDaCriação;
     private String id;
 

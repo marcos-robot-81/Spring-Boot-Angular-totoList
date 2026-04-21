@@ -18,7 +18,7 @@ import { FormsModule } from "@angular/forms";
                 width: calc(100vw - 20px);
                 height: calc(100vh - 60px);
                 margin-top: -16px;
-                margin auto;
+                margin: auto;
                 background: rgba(189, 189, 189, 0.5);
                 position: absolute ;
                 display: grid;
@@ -34,7 +34,7 @@ import { FormsModule } from "@angular/forms";
             #box input{
                 margin:auto;
                 height:20px;
-                width:200px
+                width:200px;
             }
             h4{
                 margin:auto;
