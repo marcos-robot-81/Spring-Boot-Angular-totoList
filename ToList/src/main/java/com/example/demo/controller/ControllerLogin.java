@@ -25,8 +25,7 @@ public class ControllerLogin {
         String v = gService.validado(use);
         if (v.length() > 4) {
             return v;
-        } else {
-            return "Nome ou senha estão errados ou não existem";
         }
+        return "Nome ou senha estão errados ou não existem";
     }
 }
