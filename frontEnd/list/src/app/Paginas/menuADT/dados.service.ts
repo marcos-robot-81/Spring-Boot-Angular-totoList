@@ -34,8 +34,10 @@ interface Folha {
         return this.dados;
     }
     setBlocos(blocos: any) {
-        this.dados.conteudo.dados = blocos;
-        console.log(this.dados);
+        if (this.dados && this.dados.conteudo) {
+            this.dados.conteudo.blocos = blocos;
+        }
+        console.log("Dados atualizados para salvar:", this.dados);
     }
 
     getDadosServer(chava:string){
@@ -45,15 +47,14 @@ interface Folha {
                 if (req.status === 200) {
                     this.dados = JSON.parse(req.responseText);
                     console.log("Dados recebidos do servidor:", this.dados);
-                    this.dados = JSON.parse(String(req.response))
                 } else {
                     console.error("Erro ao obter dados do servidor:", req.status, req.statusText);
                 }
             }
         };
-        req.open("GET", "http://localhost:8080/dados/get", true);
-        req.setRequestHeader("Content-Type", "text/plain");
-        req.send(`[{"chave":"${chava}"}]`);
+        req.open("POST", "http://localhost:8080/dados/get", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify({chave: chava}));
     }
 
     SalvarDadosServer() {
@@ -61,17 +62,15 @@ interface Folha {
         req.onreadystatechange = () => {
             if (req.readyState === XMLHttpRequest.DONE) {
                 if (req.status === 200) {
-                    console.log("server");
                     console.log("Dados salvos no servidor:", req.responseText);
                 } else {
                     console.error("Erro ao salvar dados no servidor:", req.status, req.statusText);
                 }
             }
         };
-        let mesagem = JSON.stringify(this.dados);
         req.open("POST", "http://localhost:8080/dados/salva", true);
-        req.setRequestHeader("Content-Type", "text/plain");
-        req.send((JSON.stringify(mesagem)));
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(this.dados));
     }
 
 }

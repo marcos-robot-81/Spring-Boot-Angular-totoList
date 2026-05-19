@@ -57,9 +57,9 @@ import { DadosService } from "../../menuADT/dados.service";
 
             req.open("POST", "http://localhost:8080/login",true);
 
-            req.setRequestHeader("Content-Type", "text/plain");
+            req.setRequestHeader("Content-Type", "application/json");
 
-            req.send(`[{"name":"${Usuario.name}","password":"${Usuario.password}"}]`);
+            req.send(JSON.stringify(Usuario));
             
             
         }

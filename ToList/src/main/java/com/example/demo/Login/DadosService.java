@@ -4,6 +4,9 @@ import com.example.demo.card.Dados;
 import com.example.demo.dbAll.OperadoCrudDados;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,10 +30,10 @@ public class DadosService {
         Dados dados = mongoTemplate.findById(id, Dados.class);
         return dados;
     }
-    public void AtualiaDados(Dados dados){
-        repository.deleteById(dados.getId());
-        repository.save(dados);
-
+    public void atualizaDados(Dados dados){
+        Query query = new Query(Criteria.where("id").is(dados.getId()));
+        Update update = new Update().set("blocos", dados.getBlocos());
+        mongoTemplate.updateFirst(query, update, Dados.class);
     }
 
 }

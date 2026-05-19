@@ -18,15 +18,22 @@ public class ControllerDados {
         this.gService = gService;
     }
 
-    @PostMapping("/getDados")
-    public String getDados(@RequestBody String chave) {
-        String n = "";
-        return n;
+    @PostMapping("/get")
+    public String getDados(@RequestBody String json) {
+        // O front envia algo como [{"chave":"token"}]
+        // Vamos extrair o token de forma simples para manter compatibilidade
+        String token = "";
+        if (json.contains("\"chave\":\"")) {
+            int start = json.indexOf("\"chave\":\"") + 9;
+            int end = json.indexOf("\"", start);
+            token = json.substring(start, end);
+        }
+
+        return gService.getDadosPorToken(token);
     }
 
-    @PostMapping("/setDados")
+    @PostMapping("/salva")
     public String setDados(@RequestBody String dados) {
-        gService.seve(dados);
-        return "ok";
+        return gService.salva(dados);
     }
 }

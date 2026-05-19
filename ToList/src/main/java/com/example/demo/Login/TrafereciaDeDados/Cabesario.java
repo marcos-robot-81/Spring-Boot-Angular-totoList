@@ -1,9 +1,11 @@
 package com.example.demo.Login.TrafereciaDeDados;
 
 import com.example.demo.card.Dados;
+import com.google.gson.annotations.SerializedName;
 
 public class Cabesario {
 
+    @SerializedName("chave")
     private String credenciais;
     private Dados conteudo;
     private String estatos;

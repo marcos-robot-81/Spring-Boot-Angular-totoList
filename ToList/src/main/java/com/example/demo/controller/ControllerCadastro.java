@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.Login.GService;
-import com.example.demo.Otilitarios.JsonCString;
 import com.example.demo.dbAll.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,9 +22,7 @@ public class ControllerCadastro {
     }
 
     @PostMapping("/cadastro")
-    public String cadastro(@RequestBody String dados) {
-        JsonCString js = new JsonCString();
-        Usuario usu = js.CriatDBUsuario(dados);
+    public String cadastro(@RequestBody Usuario usu) {
         String v = gService.cadastraUsuario(usu);
         return v;
     }

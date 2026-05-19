@@ -30,8 +30,8 @@
 
 @if(paginaSelecionada != -1){
 <pajina id="pajina"
-    [titulo]="blocos[paginaSelecionada].folhas[paginaSelecionada].titulo"
-    [text]="blocos[paginaSelecionada].folhas[paginaSelecionada].texto"
+    [titulo]="blocos[indiceBloco].folhas[paginaSelecionada].titulo"
+    [text]="blocos[indiceBloco].folhas[paginaSelecionada].texto"
     (saix)="salvarPagina($event);"
 />
 }@else {

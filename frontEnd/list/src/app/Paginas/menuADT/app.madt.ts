@@ -39,7 +39,12 @@ export class AppMenuADT {
 
     ngOnInit() {
         this.dados = this.DadosService.getDados();
-        this.blocos = this.dados.conteudo.blocos || [];
+        if (this.dados && this.dados.conteudo) {
+            this.blocos = this.dados.conteudo.blocos || [];
+        } else {
+            console.warn("Dados ou conteúdo não encontrados no ngOnInit", this.dados);
+            this.blocos = [];
+        }
     }
 
     salva(){ 
@@ -126,6 +131,7 @@ export class AppMenuADT {
             let b = {id: this.blocos.length+1, titulo: ""+n, folhas: []};
             this.blocos[this.blocos.length] = b;
             this.novablocod(false);
+            this.salva();
     }
     novafolhad(v: boolean){
         this.controleAdicionarF = v;
@@ -138,6 +144,7 @@ export class AppMenuADT {
             this.blocos[this.indiceBloco].folhas.length
         ] = v;
         this.controleAdicionarF = false;
+        this.salva();
         }else{
             window.alert("Selecione um bloco")
         }

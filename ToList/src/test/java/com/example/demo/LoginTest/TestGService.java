@@ -39,7 +39,7 @@ public class TestGService {
         @Test
         public void TvalidadoDeUsuarios() {
             try {
-                String usex = "[{\"name\":\"test\",\"password\":\"test\"}]";
+                String usex = "{\"name\":\"test\",\"password\":\"test\"}";
                 String v = GService.validado(usex);
                 System.out.println(v);
                 assertEquals(true, (v.length() > 4 || v.equals("0")));

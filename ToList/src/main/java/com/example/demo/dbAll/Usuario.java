@@ -2,18 +2,25 @@ package com.example.demo.dbAll;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import com.google.gson.annotations.SerializedName;
 
 @Document(collection = "Usuarios")
 public class Usuario {
     @Id
     private String id;
-    private String nome;
+
+    @Field("nome")
+    @SerializedName("name")
+    private String name;
+
+    @Field("password")
     private String password;
 
     public Usuario(){};
 
     public Usuario(String name, String password){
-        this.nome = name;
+        this.name = name;
         this.password = password;
     }
 
@@ -25,12 +32,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -40,7 +47,7 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setAll(String nome, String password){
-        this.nome=nome; this.password = password;
+    public void setAll(String name, String password){
+        this.name = name; this.password = password;
     }
 }

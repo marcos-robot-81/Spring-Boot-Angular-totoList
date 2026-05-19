@@ -21,11 +21,11 @@ public class ControllerLogin {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody String use) {
-        String v = gService.validado(use);
+    public String login(@RequestBody String json) {
+        String v = gService.validado(json);
         if (v.length() > 4) {
             return v;
         }
-        return "Nome ou senha estão errados ou não existem";
+        return "0"; // Consistent with frontend expectation
     }
 }
